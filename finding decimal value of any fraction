@@ -1,0 +1,54 @@
+<?php
+function fractionToDecimal($numerator, $denominator) {
+    if ($numerator == 0) {
+        return "0";
+    }
+
+    $result = "";
+
+   
+    if (($numerator < 0) ^ ($denominator < 0)) {
+        $result .= "-";
+    }
+
+    // Convert both numbers to positive
+    $numerator = abs($numerator);
+    $denominator = abs($denominator);
+
+    // Append the integer part
+    $result .= floor($numerator / $denominator);
+
+    $remainder = $numerator % $denominator;
+
+    if ($remainder == 0) {
+        return $result;
+    }
+
+    $result .= ".";
+
+    // Store remainders to detect repetition
+    $remainderMap = [];
+
+    while ($remainder != 0) {
+        if (isset($remainderMap[$remainder])) {
+            $start = $remainderMap[$remainder];
+            $result = substr($result, 0, $start) . "(" . substr($result, $start) . ")";
+            return $result;
+        }
+
+        // Store the position of this remainder
+        $remainderMap[$remainder] = strlen($result);
+
+        $remainder *= 10;
+        $result .= floor($remainder / $denominator);
+        $remainder %= $denominator;
+    }
+
+    return $result;
+}
+
+// Example usage:
+$numerator = 1;
+$denominator = 3;
+echo "The decimal representation of $numerator/$denominator is: " . fractionToDecimal($numerator, $denominator);
+?>
