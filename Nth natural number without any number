@@ -1,0 +1,26 @@
+<?php
+// Function to check if a number contains digit 9
+function containsNine($num) {
+    return strpos((string)$num, '9') !== false;
+}
+
+// Function to find the nth natural number without the digit 9
+function findNthNaturalNumber($n) {
+    $count = 0; // To keep track of valid numbers
+    $current = 0; // The current number we are checking
+
+    // Keep iterating until we find the nth valid number
+    while ($count < $n) {
+        $current++;
+        if (!containsNine($current)) {
+            $count++;
+        }
+    }
+
+    return $current;
+}
+
+// Example usage
+$n = 10;
+echo "The {$n}th natural number without digit 9 is: " . findNthNaturalNumber($n);
+?>
