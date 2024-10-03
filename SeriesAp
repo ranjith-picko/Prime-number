@@ -1,0 +1,19 @@
+<?php
+function nthTermOfArithmeticSeries($a1, $a2, $n) {
+    // Calculate the common difference
+    $d = $a2 - $a1;
+    
+    // Calculate the nth term using the formula: a_n = a_1 + (n - 1) * d
+    $an = $a1 + ($n - 1) * $d;
+    
+    return $an;
+}
+
+// Example usage:
+$a1 = 3; // First term
+$a2 = 7; // Second term
+$n = 5;  // We want the 5th term
+
+$nthTerm = nthTermOfArithmeticSeries($a1, $a2, $n);
+echo "The {$n}th term of the arithmetic series is: " . $nthTerm;
+?>
