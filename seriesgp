@@ -1,0 +1,16 @@
+<?php
+function nthTermOfGPSeries($a, $r, $n) {
+    // Calculate the nth term using the formula: a_n = a * r^(n - 1)
+    $an = $a * pow($r, $n - 1);
+    
+    return $an;
+}
+
+// Example usage:
+$a = 2; // First term
+$r = 3; // Common ratio
+$n = 5; // We want the 5th term
+
+$nthTerm = nthTermOfGPSeries($a, $r, $n);
+echo "The {$n}th term of the geometric series is: " . $nthTerm;
+?>
