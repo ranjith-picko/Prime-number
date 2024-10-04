@@ -1,0 +1,24 @@
+<?php
+function closestDivisible($N, $M) {
+    // Find the quotient
+    $quotient = intdiv($N, $M);
+    
+    // Find the two nearest divisible numbers
+    $n1 = $M * $quotient;
+    $n2 = ($N * $M > 0) ? $M * ($quotient + 1) : $M * ($quotient - 1);
+
+    // Check which is closer, if they are equally close, return the one with the larger absolute value
+    if (abs($N - $n1) < abs($N - $n2)) {
+        return $n1;
+    } elseif (abs($N - $n1) > abs($N - $n2)) {
+        return $n2;
+    } else {
+        return (abs($n1) > abs($n2)) ? $n1 : $n2;
+    }
+}
+
+// Example usage:
+$N = -15;
+$M = 6;
+echo closestDivisible($N, $M); // Output: -18
+?>
