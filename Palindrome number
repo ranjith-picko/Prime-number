@@ -1,0 +1,32 @@
+<?php
+function sum_digit($number)
+{
+    $check_up = $number;
+    $add = 0;
+
+    // Sum the digits of the number
+    while ($check_up > 0) {
+        $digit = $check_up % 10;
+        $add += $digit;
+        $check_up = intval($check_up / 10); // Use intval to ensure integer division
+    }
+
+    // Reverse the sum of digits
+    $se_checkup = $add;
+    $lin = "";
+    while ($se_checkup > 0) {
+        $digit = $se_checkup % 10;
+        $lin .= $digit; // Building the reversed string of digits
+        $se_checkup = intval($se_checkup / 10); // Use intval to ensure integer division
+    }
+
+    // Check if the sum of digits is a palindrome
+    return strval($add) == $lin;
+}
+
+if (sum_digit(56)) {
+    echo "The sum of digits is a palindrome.";
+} else {
+    echo "The sum of digits is not a palindrome.";
+}
+?>
