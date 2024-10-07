@@ -1,0 +1,21 @@
+<?php
+function find_kth_digit($a, $b, $k)
+{
+    // Compute A^B
+    $result = pow($a, $b);    
+    // Convert the result to a string
+    $result_str = strval($result);    
+    // Get the length of the result
+    $length = strlen($result_str);    
+    // Check if K is within bounds
+    if ($k > $length) {
+        return "K is larger than the number of digits in A^B";
+    }    
+    // Access the Kth digit from the right (index from 0)
+    $kth_digit = $result_str[$length - $k];    
+    return $kth_digit;
+}
+
+// Example usage:
+echo "The Kth digit from right of A^B is: " . find_kth_digit(5, 6, 3);
+?>
