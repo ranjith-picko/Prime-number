@@ -1,0 +1,19 @@
+<?php
+// Function to calculate GCD using Euclid's Algorithm
+function gcd($a, $b)
+{
+    // Base case: if b becomes 0, return a as the GCD
+    while ($b != 0) {
+        $temp = $b;
+        $b = $a % $b;  // remainder of a divided by b
+        $a = $temp;
+    }
+    
+    return $a;  // When b becomes 0, a is the GCD
+}
+
+// Example usage
+$a = 48;
+$b = 18;
+echo "The GCD of {$a} and {$b} is: " . gcd($a, $b);
+?>
