@@ -1,0 +1,35 @@
+<?php
+// Function to check if a number is a Jumping Number
+function is_jumping_number($number)
+{
+    // Convert the number to a string for digit manipulation
+    $num_str = strval($number);
+    
+    // Iterate over each adjacent pair of digits
+    for ($i = 0; $i < strlen($num_str) - 1; $i++) {
+        // Check if the absolute difference between two adjacent digits is 1
+        if (abs($num_str[$i] - $num_str[$i + 1]) != 1) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+// Function to find the largest Jumping Number smaller than or equal to X
+function largest_jumping_number($X)
+{
+    // Start checking from X and decrement until we find a Jumping Number
+    for ($i = $X; $i >= 0; $i--) {
+        if (is_jumping_number($i)) {
+            return $i;
+        }
+    }
+    // If no Jumping Number is found, return 0 (0 is a Jumping Number by definition)
+    return 0;
+}
+
+// Example usage:
+$X = 105;
+echo "The largest Jumping Number smaller than or equal to {$X} is: " . largest_jumping_number($X);
+?>
