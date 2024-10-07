@@ -1,22 +1,34 @@
 <?php
-function armstrong_number($number)
+function is_armstrong($number)
 {
-    $power_sum = 0;
-    $check_up = $number;
+    // Convert the number to a string to work with each digit
+    $num_str = strval($number);
     
-    while ($check_up > 0) {
-        $digit = $check_up % 10; // Get the last digit
-        $power_sum += pow($digit, 3); // Add cube of the digit to the sum
-        $check_up = intval($check_up / 10); // Remove the last digit
+    // Get the number of digits
+    $num_digits = strlen($num_str);
+    
+    // Initialize sum variable
+    $sum = 0;
+    
+    // Calculate the sum of each digit raised to the power of the number of digits
+    for ($i = 0; $i < $num_digits; $i++) {
+        $digit = intval($num_str[$i]);
+        $sum += pow($digit, $num_digits);
     }
     
-    // Check if the sum of cubes is equal to the original number
-    return $number == $power_sum;
+    // Check if the sum is equal to the original number
+    if ($sum == $number) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-if (armstrong_number(153)) {
-    echo "The given number is an Armstrong number.";
+// Example usage:
+$number = 153;
+if (is_armstrong($number)) {
+    echo $number . " is an Armstrong number.";
 } else {
-    echo "The given number is not an Armstrong number.";
+    echo $number . " is not an Armstrong number.";
 }
 ?>
