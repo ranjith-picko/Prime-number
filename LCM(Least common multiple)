@@ -1,0 +1,39 @@
+<?php
+// Function to calculate GCD using Euclid's Algorithm
+function gcd($a, $b)
+{
+    while ($b != 0) {
+        $temp = $b;
+        $b = $a % $b;
+        $a = $temp;
+    }
+    return $a;
+}
+
+// Function to calculate LCM using the formula LCM(a, b) * GCD(a, b) = a * b
+function lcm($a, $b, $gcd_value)
+{
+    return ($a * $b) / $gcd_value;
+}
+
+// Function to compute both LCM and GCD and return as a list
+function lcmAndGcd($a, $b)
+{
+    // Calculate GCD
+    $gcd_value = gcd($a, $b);
+    
+    // Calculate LCM
+    $lcm_value = lcm($a, $b, $gcd_value);
+    
+    // Return an array containing LCM and GCD
+    return [$lcm_value, $gcd_value];
+}
+
+// Example usage
+$a = 48;
+$b = 18;
+$result = lcmAndGcd($a, $b);
+
+echo "LCM of {$a} and {$b} is: " . $result[0] . "\n";
+echo "GCD of {$a} and {$b} is: " . $result[1];
+?>
