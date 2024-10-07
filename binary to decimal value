@@ -1,0 +1,25 @@
+<?php 
+function bitodecimal($number)
+{
+    // Convert the binary number to a string
+    $value = strval($number);
+    
+    // Get the length of the binary number
+    $length = strlen($value);
+    
+    // Initialize sum to store the decimal equivalent
+    $sum = 0;
+    
+    // Loop through each digit of the binary number
+    for ($i = 0; $i < $length; $i++) {
+        // Process from right to left (the rightmost digit has the lowest power of 2)
+        $main = pow(2, $length - $i - 1) * intval($value[$i]);
+        $sum += $main;
+    }
+
+    return $sum;
+}
+
+$number = 10001000;  // Binary input
+echo "The number {$number} is converted to decimal: " . bitodecimal($number);
+?>
