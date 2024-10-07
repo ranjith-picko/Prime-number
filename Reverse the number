@@ -1,0 +1,16 @@
+<?php
+function reverse_number($number)
+{
+    $data = $number;
+    $combine = "";
+    while ($data > 0) {
+        $digit = intval($data % 10);
+        $combine .= $digit;
+        $data = intval($data / 10);
+    }
+
+    return intval($combine);  // Convert the reversed result back to an integer to remove leading zeros
+}
+
+echo "The reversed number of 200 is: " . reverse_number(200);
+?>
