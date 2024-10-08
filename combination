@@ -1,0 +1,32 @@
+<?php
+// Function to calculate factorial
+function factorial($number) {
+    $result = 1;
+    for ($i = 1; $i <= $number; $i++) {
+        $result *= $i;
+    }
+    return $result; // Return calculated factorial
+}
+
+// Function to calculate combinations
+function combination($n, $r) {
+    if ($r > $n) {
+        return 0; // If r is greater than n, combinations are not possible
+    }
+
+    // Calculate n!, r!, and (n - r)!
+    $nFactorial = factorial($n);
+    $rFactorial = factorial($r);
+    $nMinusRFactorial = factorial($n - $r);
+
+    // Calculate combinations C(n, r)
+    $answer = $nFactorial / ($rFactorial * $nMinusRFactorial);
+
+    return $answer;
+}
+
+// Example usage
+$n = 5;
+$r = 2;
+echo "C({$n}, {$r}) is " . combination($n, $r);
+?>
