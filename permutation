@@ -1,0 +1,29 @@
+<?php
+function factorial($number) {
+    $result = 1;
+    for ($i = 1; $i <= $number; $i++) {
+        $result *= $i;
+    }
+    return $result; // Return calculated factorial
+}
+
+function permutation($n, $r) {
+    if ($r > $n) {
+        return 0; // If r is greater than n, permutations are not possible
+    }
+    
+    // Calculate n! and (n - r)!
+    $nFactorial = factorial($n);
+    $nMinusRFactorial = factorial($n - $r);
+    
+    // Calculate permutations P(n, r)
+    $answer = $nFactorial / $nMinusRFactorial;
+    
+    return $answer;
+}
+
+// Example usage
+$n = 2;
+$r = 1;
+echo "{$n}P{$r} is " . permutation($n, $r);
+?>
