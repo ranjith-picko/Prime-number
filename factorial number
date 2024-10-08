@@ -1,0 +1,16 @@
+<?php
+function factorial($number) {
+    // Initialize result variable
+    $result = 1;
+
+    // Calculate factorial
+    for ($i = $number; $i >= 1; $i--) {
+        $result *= $i; // Multiply result by the current value of i
+    }
+
+    return $result; // Return the calculated factorial
+}
+
+$number = 5;
+echo "The factorial of {$number} is " . factorial($number);
+?>
