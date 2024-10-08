@@ -1,0 +1,38 @@
+<?php
+// Function to find the GCD of two numbers
+function gcd($a, $b) {
+    while ($b != 0) {
+        $temp = $b;
+        $b = $a % $b;
+        $a = $temp;
+    }
+    return $a;
+}
+
+// Function to find the GCD of an array of numbers
+function gcd_for_array($array, $n) {
+    // Start with the first element as the result
+    if ($n == 0) {
+        return 0; // Edge case: if the array is empty, return 0
+    }
+    
+    $result = $array[0];
+
+    // Find GCD of result with every element in the array
+    for ($i = 1; $i < $n; $i++) {
+        $result = gcd($result, $array[$i]);
+
+        // Early exit if GCD becomes 1 (smallest possible GCD)
+        if ($result == 1) {
+            return 1;
+        }
+    }
+
+    return $result;
+}
+
+// Test case
+$array = array(2, 8, 12);
+$n = count($array);
+echo "The GCD of the given array elements is: " . gcd_for_array($array, $n);
+?>
