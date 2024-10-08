@@ -1,0 +1,38 @@
+<?php
+function gcd($a, $b) {
+    // Function to find the greatest common divisor (GCD) using Euclidean algorithm
+    if ($b == 0) {
+        return $a;
+    }
+    return gcd($b, $a % $b);
+}
+
+function addFractions($num1, $den1, $num2, $den2) {
+    // Find common denominator
+    $commonDenominator = $den1 * $den2;
+
+    // Adjust numerators according to the common denominator
+    $newNum1 = $num1 * $den2;
+    $newNum2 = $num2 * $den1;
+
+    // Add numerators
+    $resultNumerator = $newNum1 + $newNum2;
+
+    // Simplify the fraction by dividing both numerator and denominator by their GCD
+    $gcdValue = gcd($resultNumerator, $commonDenominator);
+
+    $simplifiedNumerator = $resultNumerator / $gcdValue;
+    $simplifiedDenominator = $commonDenominator / $gcdValue;
+
+    // Return the result in the form of (numx/denx)
+    return "{$simplifiedNumerator}/{$simplifiedDenominator}";
+}
+
+// Test case
+$num1 = 1;
+$den1 = 2;
+$num2 = 1;
+$den2 = 3;
+
+echo "The sum of {$num1}/{$den1} + {$num2}/{$den2} is: " . addFractions($num1, $den1, $num2, $den2);
+?>
