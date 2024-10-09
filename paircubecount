@@ -1,0 +1,29 @@
+<?php
+function countPairs($N) {
+    $count = 0;
+
+    // Iterate over possible values of a (starting from 1)
+    for ($a = 1; $a * $a * $a <= $N; $a++) {
+        $a_cubed = $a * $a * $a; // Calculate a^3
+        
+        // Calculate b^3
+        $b_cubed = $N - $a_cubed;
+
+        // Check if b_cubed is a perfect cube
+        if ($b_cubed >= 0) {
+            $b = round(pow($b_cubed, 1/3)); // Calculate the cube root of b_cubed
+            
+            // Verify if b is indeed a cube and that b^3 equals to b_cubed
+            if ($b * $b * $b == $b_cubed) {
+                $count++;
+            }
+        }
+    }
+    
+    return $count;
+}
+
+// Example usage
+$N = 9;
+echo "The count of pairs (a, b) for N = {$N} is: " . countPairs($N);
+?>
