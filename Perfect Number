@@ -1,0 +1,28 @@
+<?php
+function isPerfectNumber($number) {
+    // Perfect numbers are positive integers
+    if ($number <= 0) {
+        return "{$number} is not a perfect number.";
+    }
+
+    $sum = 0;
+
+    // Find divisors from 1 to half of the number
+    for ($i = 1; $i <= $number / 2; $i++) {
+        if ($number % $i == 0) {
+            $sum += $i; // Add the divisor to the sum
+        }
+    }
+
+    // Check if the sum of divisors equals the original number
+    if ($sum == $number) {
+        return "{$number} is a perfect number.";
+    } else {
+        return "{$number} is not a perfect number.";
+    }
+}
+
+// Example usage
+$number = 6;
+echo isPerfectNumber($number);
+?>
