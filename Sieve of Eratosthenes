@@ -1,0 +1,36 @@
+<?php
+function sieveOfEratosthenes($N) {
+    // Create a boolean array "isPrime[0..N]" and initialize all entries as true
+    // A value in isPrime[i] will be false if i is not a prime, true if i is a prime
+    $isPrime = array_fill(0, $N + 1, true);
+    
+    // Set 0 and 1 as non-prime
+    $isPrime[0] = $isPrime[1] = false;
+
+    // Start checking from the first prime number, which is 2
+    for ($p = 2; $p * $p <= $N; $p++) {
+        // If isPrime[p] is still true, it is a prime number
+        if ($isPrime[$p] == true) {
+            // Mark all multiples of p as false (non-prime)
+            for ($i = $p * $p; $i <= $N; $i += $p) {
+                $isPrime[$i] = false;
+            }
+        }
+    }
+
+    // Collect and return all prime numbers
+    $primeNumbers = [];
+    for ($p = 2; $p <= $N; $p++) {
+        if ($isPrime[$p] == true) {
+            $primeNumbers[] = $p;
+        }
+    }
+
+    return $primeNumbers;
+}
+
+// Example usage
+$N = 30;
+$primeNumbers = sieveOfEratosthenes($N);
+echo "Prime numbers up to {$N} are: " . implode(", ", $primeNumbers);
+?>
