@@ -1,0 +1,18 @@
+<?php
+function nthRoot($n, $m) {
+    // Calculate the nth root of m
+    $root = pow($m, 1 / $n);
+    
+    // Check if the root is an integer
+    if (round($root) ** $n == $m) {
+        return round($root); // Return the integer value of the root
+    } else {
+        return -1; // Return -1 if the root is not an integer
+    }
+}
+
+// Example usage
+$n = 3;
+$m = 9;
+echo "The {$n}th root of {$m} is: " . nthRoot($n, $m);
+?>
