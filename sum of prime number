@@ -1,0 +1,28 @@
+<?php
+
+function isPrime($num) {
+    if ($num < 2) {
+        return false;
+    }
+    for ($i = 2; $i <= sqrt($num); $i++) {
+        if ($num % $i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function sumPrimes($number) {
+    $sum = 0;
+    for ($i = 2; $i <= $number; $i++) {
+        if (isPrime($i)) {
+            $sum += $i;
+        }
+    }
+    return $sum;
+}
+
+$number = 10;
+$result = sumPrimes($number);
+echo "The sum of prime numbers up to {$number} is " . $result;
+?>
