@@ -1,0 +1,51 @@
+<?php
+
+// Function to check if a number is prime
+function isPrime($num) {
+    if ($num < 2) {
+        return false;
+    }
+    for ($i = 2; $i <= sqrt($num); $i++) {
+        if ($num % $i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Function to find all prime numbers up to a given number n
+function getPrimes($n) {
+    $primes = [];
+    for ($i = 2; $i <= $n; $i++) {
+        if (isPrime($i)) {
+            $primes[] = $i;
+        }
+    }
+    return $primes;
+}
+
+// Function to find all pairs (p, q) such that p * q <= n
+function findPrimePairs($n) {
+    $primes = getPrimes($n);
+    $pairs = [];
+
+    // Find pairs (p, q) where p * q <= n
+    for ($i = 0; $i < count($primes); $i++) {
+        for ($j = $i; $j < count($primes); $j++) {
+            if ($primes[$i] * $primes[$j] <= $n) {
+                $pairs[] = [$primes[$i], $primes[$j]];
+            }
+        }
+    }
+
+    return $pairs;
+}
+
+$n = 4;
+$pairs = findPrimePairs($n);
+
+echo "Prime pairs (p, q) such that p * q <= {$n}:\n";
+foreach ($pairs as $pair) {
+    echo "{$pair[0]} {$pair[1]}\n";
+}
+?>
